@@ -1,0 +1,379 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>李家栋的计算器</title>
+        <script language="javascript">
+            var lsum=0,last=0,now=0,pointnum=0;
+            //isbn判断是否在两数之间
+            //ispoint判断是否为小数模式
+            //isneg判断是否为负数模式
+            var isbn=false,ispoint=false,isneg=false;
+            //ismul判断是否为乘法模式
+            //ischu判断倒数模式
+            //isresult判断是否已经得出结果
+            var ismul=false,ischu=false,isresult=false;
+            var s='.';
+            function clean(){
+                last=0;
+                lsum=0;
+                now=0;
+                isbn=false;
+                s=".";
+                document.cal.output.value=null;
+                ispoint=false;
+                isneg=false;
+                ismul=false;
+                ischu=false;
+            }
+            function point(){
+                document.cal.output.value=document.cal.output.value+'.';
+                ispoint=true;
+                pointnum=1;
+            }
+            function num1(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'1';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+1;
+                    
+                }else{
+                    now=now+pnum(1,pointnum);
+                }
+            }function num2(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'2';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+2;
+                    
+                }else{
+                    now=now+pnum(2,pointnum);
+                }
+            }function num3(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'3';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+3;
+                    
+                }else{
+                    now=now+pnum(3,pointnum);
+                }
+            }function num4(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'4';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+4;
+                    
+                }else{
+                    now=now+pnum(4,pointnum);
+                }
+            }function num5(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'5';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+5;
+                    
+                }else{
+                    now=now+pnum(5,pointnum);
+                }
+            }function num6(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'6';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+6;
+                    
+                }else{
+                    now=now+pnum(6,pointnum);
+                }
+            }
+            function num7(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'7';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+7;
+                    
+                }else{
+                    now=now+pnum(7,pointnum);
+                }
+            }function num8(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'8';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+8;
+                    
+                }else{
+                    now=now+pnum(8,pointnum);
+                }
+            }function num9(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'9';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+9;
+                    
+                }else{
+                    now=now+pnum(0,pointnum);
+                }
+            }
+            function num0(){
+                if(isresult){
+                    clean();
+                    isresult=false;
+                }
+                document.cal.output.value=document.cal.output.value+'0';
+                isbn=true;
+                if(!ispoint){
+                    now=now*10+0;
+                    
+                }else{
+                    now=now+pnum(0,pointnum);
+                }
+            }
+            function add(){
+                if(isresult){
+                    clean();
+                }
+                document.cal.output.value=document.cal.output.value+'+';
+                if(!isbn){
+
+                }else{
+                    if(isneg){
+                        now=now*(-1);
+                        isneg=false;
+                    }
+                    if(ischu){
+                        if(!now){
+                            alert("math error!");
+                            isresult=true;
+                        }else{
+                            now=1/now;
+                            ischu=false;
+                        }
+                        
+                    }
+                    if(ismul){
+                        last=last*now;
+                        ismul=false;
+                        now=0;
+                    }
+                    isbn=false;
+                    ispoint=false;
+                    pointnum=0;
+                    lsum=lsum+last;
+                    last=now;
+                    now=0;
+                }
+                
+            }
+            function sub(){
+                if(isresult){
+                    clean();
+                }
+                document.cal.output.value=document.cal.output.value+'-';
+                
+                if(!isbn){
+                    if(isneg){
+                        isneg=false;
+                    }else{
+                        isneg=true;
+                    }
+                }else{
+                    if(isneg){
+                        now=now*(-1);
+                        isneg=false;
+                    }
+                    if(ischu){
+                        if(!now){
+                            alert("math error!");
+                            isresult=true;
+                        }else{
+                            now=1/now;
+                            ischu=false;
+                        }
+                        
+                    }
+                    if(ismul){
+                        last=last*now;
+                        ismul=false;
+                        now=0;
+                    }
+                    isneg=true;
+                    isbn=false;
+                    ispoint=false;
+                    pointnum=0;
+                    lsum=lsum+last;
+                    last=now;
+                    now=0;
+                }
+                
+            }
+            function mul(){
+                if(!isbn){
+
+                }else{
+                    document.cal.output.value=document.cal.output.value+'*';
+                    if(isneg){
+                        now=now*(-1);
+                        isneg=false;
+                    }
+                    if(ischu){
+                        if(!now){
+                            alert("math error!");
+                            isresult=true;
+                        }else{
+                            now=1/now;
+                            ischu=false;
+                        }
+                        
+                    }
+                    if(ismul){
+                        last=last*now;
+                        ismul=false;
+                        now=0;
+                    }else{
+                        lsum=lsum+last;
+                        last=now;
+                        now=0;
+                    }
+                    ismul=true;
+                    isbn=false;
+                    ispoint=false;
+                    pointnum=0;
+
+                }
+            }
+            function chu(){
+                if(!isbn){
+
+                }else{
+                    document.cal.output.value=document.cal.output.value+'/';
+                    if(isneg){
+                        now=now*(-1);
+                        isneg=false;
+                    }
+                    if(ischu){
+                        if(!now){
+                            alert("math error!");
+                            isresult=true;
+                        }else{
+                            now=1/now;
+                            ischu=false;
+                        }
+                        
+                    }
+                    if(ismul){
+                        last=last*now;
+                        ismul=false;
+                        now=0;
+                    }else{
+                        lsum=lsum+last;
+                        last=now;
+                        now=0;
+                    }
+                    ismul=true;
+                    isbn=false;
+                    ispoint=false;
+                    pointnum=0;
+                    ischu=true;
+                }
+            }
+            function result(){
+                if(isneg){
+                    now=now*(-1);
+                    isneg=false;
+                }
+                if(ischu){
+                    if(!now){
+                        alert("math error!");
+                        isresult=true;
+                    }else{
+                        now=1/now;
+                        ischu=false;
+                    }
+                    
+                }
+                if(ismul){
+                    last=last*now;
+                    ismul=false;
+                    now=0;
+                }
+                lsum=lsum+last+now+1e-7;
+                document.cal.output.value=document.cal.output.value+'='+lsum.toFixed(5);
+                isresult=true;
+            }
+            function pnum(x,pn){
+                for(var i=0;i<pn;++i){
+                    x/=10;
+                }
+                return x;
+            }
+
+        </script>
+    </head>
+    <body>
+        <form name="cal">
+            <p>
+                <input name="output" type="text" readonly >
+                <input type="button" value="C" onclick="clean()">
+            </p>
+            <p>
+                <input type="button" value="7" onclick="num7()">
+                <input type="button" value="8" onclick="num8()">
+                <input type="button" value="9" onclick="num9()">
+                <input type="button" value="/" onclick="chu()">
+            </p>
+            <p>
+                <input type="button" value="4" onclick="num4()">
+                <input type="button" value="5" onclick="num5()">
+                <input type="button" value="6" onclick="num6()">
+                <input type="button" value="*" onclick="mul()">
+            </p>
+            <p>
+                <input type="button" value="1" onclick="num1()">
+                <input type="button" value="2" onclick="num2()">
+                <input type="button" value="3" onclick="num3()">
+                <input type="button" value="-" onclick="sub()">
+            </p>
+            <p>
+                <input type="button" value="0" onclick="num0()">
+                <input type="button" value="." onclick="point()">
+                <input type="button" value="=" onclick="result()">
+                <input type="button" value="+" onclick="add()">
+            </p>
+        </form>
+    </body>
+</html>
